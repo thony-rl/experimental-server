@@ -1,3 +1,5 @@
+// SERVER CONFIGURATION
+
 const express = require('express');
 const app = express();
 const morgan = require('morgan');
@@ -13,6 +15,8 @@ app.use(express.json());
 
 // Routes
 app.use(require('./routes/index'));
+app.use('/api/movies', require('./routes/movies'));
+app.use('/api/users', require('./routes/users'));
 
 // Starting the Server
 app.listen(app.get('port'), () => {
