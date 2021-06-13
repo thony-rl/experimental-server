@@ -4,11 +4,13 @@ const under = require('underscore');
 
 const movies = require('../sample.json');
 
+// Ruta inicial muestra las peliculas
 router.get('/', (req, res) => {
     res.send(movies);
 });
 
-router.post('/', (req, res) => {
+// Ruta para agregar más peliculas
+router.post('/add', (req, res) => {
     const { tittle, director, year, rating } = req.body;
     if(tittle &&director && year && rating){
         const id = movies.length + 2
@@ -21,6 +23,7 @@ router.post('/', (req, res) => {
     }
 });
 
+// Ruta para editar alguna pelicula
 router.put('/:id', (req, res) => {
     const { id } = req.params;
     const { tittle, director, year, rating } = req.body;
@@ -39,6 +42,7 @@ router.put('/:id', (req, res) => {
     }
 });
 
+// Ruta para eliminar una pelicula
 router.delete('/:id', (req, res) => {
     const { id } = req.params;
     under.each(movies, (movie, id_move) => {
