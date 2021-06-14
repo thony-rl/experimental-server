@@ -9,4 +9,11 @@ router.get('/', async (req, res) => {
     res.send(users);
 });
 
+router.get('/:id', async (req, res) => {
+    const { id } = req.params;
+    const response = await fetch('https://jsonplaceholder.typicode.com/users' + '/' + id);
+    const user = await response.json();
+    res.send(user);
+});
+
 module.exports = router;
